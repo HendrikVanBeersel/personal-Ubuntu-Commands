@@ -62,6 +62,15 @@ echo "
 "
 apt-get full-upgrade -y | tee -a /tmp/update-shutdown.txt
 
+
+echo "
+##################################################
+#               dist-upgrading programs          #
+##################################################
+"
+apt-get dist-upgrade -y | tee -a /tmp/update-shutdown.txt
+
+
 echo "
 ##################################################
 #               autoremove programs              #
