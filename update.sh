@@ -4,6 +4,8 @@
 
 # Checking whether script is being run as root
 
+shuttingdown_after = false
+
 if [[ ${UID} != 0 ]]; then
     echo "
     This script must be run as root or with sudo permissions.
@@ -12,6 +14,28 @@ if [[ ${UID} != 0 ]]; then
     exit 1
 fi
 
+while getopts ":sh" opt; do
+  case ${opt} in
+    h )
+      echo "
+      This script will update and upgrade your system.
+
+      options:
+      -s  shutdown after update and upgrade
+      "
+      exit 0
+      ;;
+    s )
+      shuttingdown_after = true
+      ;;
+    \? )
+      echo "
+      Invalid Option: -$OPTARG
+      "
+      exit 1
+      ;;
+  esac
+done
 
 echo "
 ##################################################
@@ -37,6 +61,15 @@ echo "
 ##################################################
 "
 apt-get full-upgrade -y | tee -a /tmp/update-shutdown.txt
+
+
+echo "
+##################################################
+#               dist-upgrading programs          #
+##################################################
+"
+apt-get dist-upgrade -y | tee -a /tmp/update-shutdown.txt
+
 
 echo "
 ##################################################
@@ -84,11 +117,12 @@ echo"
 ##################################################
 "
 fi
+if [ $shuttingdown_after = true ]
  echo "
 ##################################################
 #                   shutingDown                  #
 ##################################################
 "
 shutdown
-
+fi
 exit 0
