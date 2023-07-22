@@ -18,7 +18,7 @@ BackupPathworld="backup/minecraft/$backupTime/world.tar.gz"
 BackupPathworldNether="backup/minecraft/$backupTime/world_nether.tar.gz"
 BackupPathworldTheEnd="backup/minecraft/$backupTime/world_the_end.tar.gz"
 
-mkdir -p backup/minecraft/$backupTime
+mkdir -p /minecraft/backup/$backupTime
 
 sourcePathWorld="minecraft/world"
 sourcePathWorldNether="minecraft/world_nether"
@@ -30,4 +30,4 @@ tar -cvpzf $BackupPathworld $sourcePathWorld
 tar -cvpzf $BackupPathworldNether $sourcePathWorldNether
 tar -cvpzf $BackupPathworldTheEnd $sourcePathWorldTheEnd
 
-screen -S minecraft -X stuff $'java -Xms1024M -Xmx1600M -jar paper-1.20.1-83.jar --nogui^M'
+screen -S minecraft -X stuff $'java -Xms1024M -Xmx3000M -jar paper-1.20.1-83.jar --nogui^M'
