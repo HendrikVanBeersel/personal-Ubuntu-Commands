@@ -5,7 +5,7 @@ these are my personel commands. Feel free to use them and or modify them for you
 - update your ubuntu and shutdown afterwards.
 
 ### todo
-- add option to reboot/shutdown/not-shutdown
+-[x] add option to reboot/shutdown/not-shutdown
 
 # to prepare a command for use 
 1. chmod +x the-command.sh
