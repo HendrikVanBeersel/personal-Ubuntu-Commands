@@ -118,6 +118,8 @@ echo"
 "
 fi
 if [ $shuttingdown_after = true ]
+
+then
  echo "
 ##################################################
 #                   shutingDown                  #
