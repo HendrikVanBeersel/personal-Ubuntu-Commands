@@ -1,12 +1,13 @@
 
 
 
+#!/bin/bash
 
 # Checking whether script is being run as root
 
-shuttingdown_after = false
+shuttingdown=false
 
-if [[ ${UID} != 0 ]]; then
+if [ ${UID} != 0 ]; then
     echo "
     This script must be run as root or with sudo permissions.
     Please run using sudo.${normal}
@@ -26,7 +27,7 @@ while getopts ":sh" opt; do
       exit 0
       ;;
     s )
-      shuttingdown_after = true
+      shuttingdown=true
       ;;
     \? )
       echo "
@@ -93,9 +94,9 @@ echo "
 ##################################################
 "
 
-if [ -f "/tmp/update-shutdown.txt"  ]
+if [ -f "/tmp/update-shutdown.txt"  ];then
 
-then
+
 
 
   echo "
@@ -117,9 +118,7 @@ echo"
 ##################################################
 "
 fi
-if [ $shuttingdown_after = true ]
-
-then
+if [ "$shuttingdown" = true ];then
  echo "
 ##################################################
 #                   shutingDown                  #
