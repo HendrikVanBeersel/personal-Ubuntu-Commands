@@ -25,3 +25,4 @@ cp start-minecraft.sh /usr/local/bin/start-minecraft
 cp backup-minecraft.sh /usr/local/bin/backup-minecraft
 cp update-server-commands.sh /usr/local/bin/update-server-commands
 
+source ~/.bashrc
