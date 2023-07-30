@@ -1,5 +1,3 @@
-#!/bin/bash
-
 cd minecraft
 echo "starting minecraft server..."
 screen -S minecraft -d -m
