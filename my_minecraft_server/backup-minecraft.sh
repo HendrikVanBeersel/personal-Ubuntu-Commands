@@ -30,4 +30,13 @@ tar -cvpzf $BackupPathworld $sourcePathWorld
 tar -cvpzf $BackupPathworldNether $sourcePathWorldNether
 tar -cvpzf $BackupPathworldTheEnd $sourcePathWorldTheEnd
 
+targetDate=$(date -d "7 days ago" +%Y-%m-%d)
+
+if [ -d "/minecraft/backup/$targetDate" ]; then
+    rm -rf /minecraft/backup/$targetDate
+    echo "delete old backup: $targetDate"
+else
+    echo "no old backup found: $targetDate"
+fi
+
 screen -S minecraft -X stuff $'java -Xms1024M -Xmx4000M -jar paper-1.20.1-95.jar --nogui^M'
