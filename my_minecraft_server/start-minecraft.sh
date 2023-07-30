@@ -1,3 +1,4 @@
+#!/bin/bash
 
 cd minecraft
 echo "starting minecraft server..."

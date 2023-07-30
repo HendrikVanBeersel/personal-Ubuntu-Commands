@@ -1,3 +1,5 @@
+#!/bin/bash
+
 screen -S minecraft -X stuff $'say Server will backup in 1 hour.^M'
 sleep 30m
 screen -S minecraft -X stuff $'say Server will backup in 30 minutes.^M'
