@@ -56,6 +56,6 @@ if [ -d "backup/minecraft/$targetDate" ]; then
 else
     echo "no old backup found: $targetDate"
 fi
-echo "Backup process completed at $(date)" >> "$log_file"
+echo "Backup process completed at $(date)" >> "$logFile"
 
 screen -S minecraft -X stuff $'java -Xms1024M -Xmx4000M -jar paper-1.20.1-95.jar --nogui^M'
