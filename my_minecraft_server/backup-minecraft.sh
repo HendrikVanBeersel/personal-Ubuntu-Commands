@@ -1,3 +1,5 @@
+logFile="backup/backup-minecraft.log"
+exec 2> "$logFile"
 screen -S minecraft -X stuff $'say Server will backup in 1 hour.^M'
 sleep 30m
 screen -S minecraft -X stuff $'say Server will backup in 30 minutes.^M'
@@ -12,6 +14,7 @@ screen -S minecraft -X stuff $'say Server will backup in 30 seconds.^M'
 sleep 30
 screen -S minecraft -X stuff $'stop^M'
 
+echo "Starting backup process at $(date)" >> "$log_file"
 backupTime=$(date +%Y-%m-%d)
 
 BackupPathworld="backup/minecraft/$backupTime/world.tar.gz"
@@ -38,5 +41,6 @@ if [ -d "/minecraft/backup/$targetDate" ]; then
 else
     echo "no old backup found: $targetDate"
 fi
+echo "Backup process completed at $(date)" >> "$log_file"
 
 screen -S minecraft -X stuff $'java -Xms1024M -Xmx4000M -jar paper-1.20.1-95.jar --nogui^M'
