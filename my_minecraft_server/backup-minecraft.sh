@@ -9,7 +9,7 @@ fi
 
 if [ "$forcedBackup" = true ];
 then
-    echo "Forced backup started at $(date)" >> "$log_file"
+    echo "Forced backup started at $(date)" >> "$logFile"
     screen -S minecraft -X stuff $'say Server will backup immediately.^M'
     sleep 5
     screen -S minecraft -X stuff $'stop^M'
@@ -29,7 +29,7 @@ else
     screen -S minecraft -X stuff $'stop^M'
 fi
 
-echo "Starting backup process at $(date)" >> "$log_file"
+echo "Starting backup process at $(date)" >> "$logFile"
 backupTime=$(date +%Y-%m-%d)
 
 BackupPathworld="backup/minecraft/$backupTime/world.tar.gz"
