@@ -1,18 +1,33 @@
 logFile="backup/backup-minecraft.log"
 exec 2> "$logFile"
-screen -S minecraft -X stuff $'say Server will backup in 1 hour.^M'
-sleep 30m
-screen -S minecraft -X stuff $'say Server will backup in 30 minutes.^M'
-sleep 15m
-screen -S minecraft -X stuff $'say Server will backup in 15 minutes.^M'
-sleep 10m
-screen -S minecraft -X stuff $'say Server will backup in 5 minutes.^M'
-sleep 4m
-screen -S minecraft -X stuff $'say Server will backup in 1 minute.^M'
-sleep 30
-screen -S minecraft -X stuff $'say Server will backup in 30 seconds.^M'
-sleep 30
-screen -S minecraft -X stuff $'stop^M'
+forcedBackup=false
+
+if [ "$1" == "-n" ]; then
+    forcedBackup=true
+fi
+
+
+if [ "$forcedBackup" = true ];
+then
+    echo "Forced backup started at $(date)" >> "$log_file"
+    screen -S minecraft -X stuff $'say Server will backup immediately.^M'
+    sleep 5
+    screen -S minecraft -X stuff $'stop^M'
+else
+    screen -S minecraft -X stuff $'say Server will backup in 1 hour.^M'
+    sleep 30m
+    screen -S minecraft -X stuff $'say Server will backup in 30 minutes.^M'
+    sleep 15m
+    screen -S minecraft -X stuff $'say Server will backup in 15 minutes.^M'
+    sleep 10m
+    screen -S minecraft -X stuff $'say Server will backup in 5 minutes.^M'
+    sleep 4m
+    screen -S minecraft -X stuff $'say Server will backup in 1 minute.^M'
+    sleep 30
+    screen -S minecraft -X stuff $'say Server will backup in 30 seconds.^M'
+    sleep 30
+    screen -S minecraft -X stuff $'stop^M'
+fi
 
 echo "Starting backup process at $(date)" >> "$log_file"
 backupTime=$(date +%Y-%m-%d)
