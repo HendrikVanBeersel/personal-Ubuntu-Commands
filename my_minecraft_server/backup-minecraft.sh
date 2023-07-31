@@ -36,7 +36,7 @@ BackupPathworld="backup/minecraft/$backupTime/world.tar.gz"
 BackupPathworldNether="backup/minecraft/$backupTime/world_nether.tar.gz"
 BackupPathworldTheEnd="backup/minecraft/$backupTime/world_the_end.tar.gz"
 
-mkdir -p /minecraft/backup/$backupTime
+mkdir -p backup/minecraft//$backupTime
 
 sourcePathWorld="minecraft/world"
 sourcePathWorldNether="minecraft/world_nether"
@@ -50,8 +50,8 @@ tar -cvpzf $BackupPathworldTheEnd $sourcePathWorldTheEnd
 
 targetDate=$(date -d "7 days ago" +%Y-%m-%d)
 
-if [ -d "/minecraft/backup/$targetDate" ]; then
-    rm -rf /minecraft/backup/$targetDate
+if [ -d "backup/minecraft/$targetDate" ]; then
+    rm -rf backup/minecraft//$targetDate
     echo "delete old backup: $targetDate"
 else
     echo "no old backup found: $targetDate"
